@@ -159,13 +159,13 @@ case "$COMMAND" in
             
             # Verify backup was created and has content
             if [[ -f "$OUTPUT_FILE" ]] && [[ -s "$OUTPUT_FILE" ]]; then
-                local file_size=$(du -h "$OUTPUT_FILE" | cut -f1)
+                file_size=$(du -h "$OUTPUT_FILE" | cut -f1)
                 log_info "Backup complete: $OUTPUT_FILE (${file_size})"
                 
                 if [[ "$VERBOSE" == "true" ]]; then
                     log_info "Backup contents:"
                     tar -tzf "$OUTPUT_FILE" | head -10
-                    local total_files=$(tar -tzf "$OUTPUT_FILE" | wc -l)
+                    total_files=$(tar -tzf "$OUTPUT_FILE" | wc -l)
                     if [[ $total_files -gt 10 ]]; then
                         log_info "... and $((total_files - 10)) more files"
                     fi
@@ -222,7 +222,7 @@ case "$COMMAND" in
         if [[ "$VERBOSE" == "true" ]]; then
             log_info "Archive contents preview:"
             tar -tzf "$INPUT_FILE" | head -10
-            local total_files=$(tar -tzf "$INPUT_FILE" | wc -l)
+            total_files=$(tar -tzf "$INPUT_FILE" | wc -l)
             if [[ $total_files -gt 10 ]]; then
                 log_info "... and $((total_files - 10)) more files"
             fi
